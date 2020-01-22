@@ -35,7 +35,8 @@ fn main() {
         .expect("failed to execute process")
     };
     let output = if cfg!(target_os = "windows") {
-        std::process::Command::new(String::from_utf8(input_out.stdout).unwrap())
+        std::process::Command::new(output_arg)
+        .arg(String::from_utf8(input_out.stdout).unwrap())
         .output()
         .expect("failed to execute process")
     } else {
